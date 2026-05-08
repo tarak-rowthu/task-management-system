@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <div align="center">
 
 # 🗂️ TaskMaster — Full Stack Task Management System
