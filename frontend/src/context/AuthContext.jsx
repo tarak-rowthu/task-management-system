@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        const response = await api.post('/auth/login', { email, password });
+        const response = await api.post(`${import.meta.env.VITE_API_URL}/api/v1/auth/login`, { email, password });
         const { token, id, name, role } = response.data;
         const userData = { id, name, email, role };
         
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async (name, email, password) => {
-        const response = await api.post('/auth/register', { name, email, password });
+        const response = await api.post(`${import.meta.env.VITE_API_URL}/api/v1/auth/register`, { name, email, password });
         const { token, id, role } = response.data;
         const userData = { id, name, email, role };
         
