@@ -1,0 +1,33 @@
+# ==============================================
+# Root .gitignore — Task Management System
+# ==============================================
+
+# Backend build artifacts
+backend/target/
+
+# Frontend dependencies & build output
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+
+# ⚠️  Secrets — NEVER commit these
+backend/src/main/resources/application.properties
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+logs/
+
+# Vite cache
+frontend/.vite/
