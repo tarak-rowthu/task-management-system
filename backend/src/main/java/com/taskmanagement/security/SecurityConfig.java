@@ -81,12 +81,19 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList(
-                "http://localhost:5173",  // Vite default port
-                "http://localhost:5174",  // Vite fallback port
-                "http://localhost:5175"   // Vite secondary fallback port
+        String allowedOrigins = System.getenv("CORS_ALLOWED_ORIGINS");
+        List<String> origins = new java.util.ArrayList<>(Arrays.asList(
+                "http://localhost:5173",
+                "http://localhost:5174",
+                "http://localhost:5175"
         ));
+
+        if (allowedOrigins != null && !allowedOrigins.isEmpty()) {
+            origins.addAll(Arrays.asList(allowedOrigins.split(",")));
+        }
+
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(origins);
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
