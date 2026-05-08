@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> e1fe642 (added docker file)
 <div align="center">
 
 # 🗂️ TaskMaster — Full Stack Task Management System
@@ -343,6 +346,4 @@ Built as a full-stack backend internship project demonstrating:
 ## 📄 License
 
 This project is developed for educational and internship purposes.
-=======
-# task-management-system
->>>>>>> 3935712c8db580e5d8d567ae0437666458c0ce44
+
