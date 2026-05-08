@@ -95,43 +95,30 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-
-        String allowedOrigins = System.getenv("CORS_ALLOWED_ORIGINS");
-
-        List<String> origins = new java.util.ArrayList<>(Arrays.asList(
+        CorsConfiguration configuration = new CorsConfiguration();
+        
+        // Use setAllowedOriginPatterns to support wildcards for Vercel deployments
+        configuration.setAllowedOriginPatterns(List.of(
+                "https://*.vercel.app",
                 "http://localhost:5173",
                 "http://localhost:5174",
-                "http://localhost:5175"));
-
-        if (allowedOrigins != null &&
-                !allowedOrigins.isEmpty()) {
-
-            origins.addAll(
-                    Arrays.asList(
-                            allowedOrigins.split(",")));
-        }
-
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowedOrigins(origins);
+                "http://localhost:5175"
+        ));
 
         configuration.setAllowedMethods(Arrays.asList(
                 "GET",
                 "POST",
                 "PUT",
                 "DELETE",
-                "OPTIONS"));
+                "OPTIONS"
+        ));
 
         configuration.setAllowedHeaders(List.of("*"));
-
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-        source.registerCorsConfiguration(
-                "/**",
-                configuration);
-
+        source.registerCorsConfiguration("/**", configuration);
+        
         return source;
     }
 }
